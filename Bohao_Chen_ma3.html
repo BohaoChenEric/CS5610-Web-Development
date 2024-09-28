@@ -1,0 +1,98 @@
+<html>
+    <head>
+        <style>
+            .container {
+                display: grid;
+                grid-template-areas:
+                    "header header header"
+                    "sidebar-left main sidebar-right"
+                    "footer footer footer";
+                grid-template-columns: 1fr 4fr 1fr;
+                grid-template-rows: 60px auto 60px;
+                height: 100vh;
+                gap: 10px;
+                background-color: white;
+                border: 1px solid black;
+            }
+
+            header {
+                grid-area: header;
+                background-color: #ffcccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                font-size: 24px;
+                border: 1px white;
+            }
+
+            .main-content {
+                grid-area: main;
+                background-color: #ffcccc;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                border: 1px solid white;
+                height: calc(4 * 60px); 
+            }
+
+            .box-container{
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100%;
+            }
+
+            .box{
+                width: 60px;
+                height: 60px;
+                background-color: #009bd6;
+                transition: 0.5s;
+            }
+
+            .box:hover{
+                width: 120px;
+                height: 120px;
+                background-color: green;
+            }
+
+            .sidebar-left, .sidebar-right{
+                background-color: #ffcccc;
+                padding: 20px;
+                border: 1px white;
+            }
+
+            .sidebar-left{
+                grid-area: sidebar-left;
+            }
+
+            .sidebar-right {
+                grid-area: sidebar-right;
+            }
+
+            footer {
+                grid-area: footer;
+                background-color: #ffcccc;
+                border: 1px solid white;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+            }
+
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <header>
+                <h1>Bohao's Website</h1>
+            </header>
+            <div class="sidebar-left"></div>
+            <div class="main-content">
+                <div class="box-container">
+                    <div class="box"></div>
+                </div>
+            </div>
+            <div class="sidebar-right"></div>
+            <footer></footer>
+        </div>
+    </body>
+</html>
