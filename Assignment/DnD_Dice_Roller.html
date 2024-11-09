@@ -1,0 +1,54 @@
+<html>
+    <head>
+        <style>
+            body {
+                display: flex;
+                justify-content: center;
+                align-items: center;
+                height: 100vh;
+                margin: 0;
+                background-color: #062f4f;
+            }
+            .container {
+                background-color: #df744a;
+                padding: 20px;
+                border-radius: 8px;
+            }
+            input, button {
+                margin: 10px 0;
+                padding: 5px;
+                background-color: #fedcd2;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <h1>D&D Dice Roller</h1>
+            <input type="text" id="diceInput" placeholder="Enter dice (e.g., 3d6)">
+            <button onclick="rollDice()">Roll Dice</button>
+            <p id="result"></p>
+        </div>
+
+        <script>
+            function rollDice() {
+                // Get input and save input
+                const diceString = document.getElementById('diceInput').value;
+                const [numDice, numSides] = diceString.split('d').map(Number);
+
+                // Validate input
+                if (numDice < 1 || numDice > 100 || numSides < 2 || numSides > 100 || isNaN(numDice) || isNaN(numSides)) {
+                    document.getElementById('result').textContent = "Invalid input. Number of dice must be between 1 and 100, and number of sides must be between 2 and 100, and has to have a d in between.";
+                    return;
+                }
+
+                // Roll the dice and sum the results
+                let total = 0;
+                for (let i = 0; i < numDice; i++) {
+                    total += Math.floor(Math.random() * numSides) + 1;
+                }
+
+                document.getElementById('result').textContent = `Result: ${total}`;
+            }
+        </script>
+    </body>
+</html>
