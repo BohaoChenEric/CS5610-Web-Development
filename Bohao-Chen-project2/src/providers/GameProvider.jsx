@@ -3,16 +3,16 @@ import React, { createContext, useState } from 'react';
 export const GameContext = createContext();
 
 export const GameProvider = ({ children }) => {
-  // Main game state
+
   const [gameState, setGameState] = useState({
-    board: [],      // The game board
-    gameOver: false, // Whether the game is finished
-    won: false      // Whether the player won
+    board: [],      
+    gameOver: false,
+    won: false     
   });
 
   // Start a new game
   const initializeBoard = (difficulty) => {
-    // Set board size based on difficulty
+    // Set difficulty
     let rows, cols, mines;
     if (difficulty === 'medium') {
       rows = 16;
@@ -22,7 +22,7 @@ export const GameProvider = ({ children }) => {
       rows = 16;
       cols = 30;
       mines = 99;
-    } else { // easy
+    } else { 
       rows = 8;
       cols = 8;
       mines = 10;
@@ -34,9 +34,9 @@ export const GameProvider = ({ children }) => {
       const row = [];
       for (let j = 0; j < cols; j++) {
         row.push({
-          isMine: false,     // Whether this cell has a mine
-          isRevealed: false, // Whether this cell has been clicked
-          neighborMines: 0   // Number of mines around this cell
+          isMine: false,     
+          isRevealed: false, 
+          neighborMines: 0  
         });
       }
       board.push(row);
@@ -47,14 +47,12 @@ export const GameProvider = ({ children }) => {
     while (minesPlaced < mines) {
       const row = Math.floor(Math.random() * rows);
       const col = Math.floor(Math.random() * cols);
-      // If no mine here yet, place one
       if (!board[row][col].isMine) {
         board[row][col].isMine = true;
         minesPlaced++;
       }
     }
 
-    // Count neighboring mines for each cell
     for (let i = 0; i < rows; i++) {
       for (let j = 0; j < cols; j++) {
         if (!board[i][j].isMine) {
@@ -75,7 +73,7 @@ export const GameProvider = ({ children }) => {
       }
     }
 
-    // Update game state with new board
+    // Update game state
     setGameState({
       board: board,
       gameOver: false,
@@ -85,7 +83,6 @@ export const GameProvider = ({ children }) => {
 
   // Handle cell clicks
   const handleCellClick = (row, col) => {
-    // Ignore if game is over or cell is already revealed
     if (gameState.gameOver || gameState.board[row][col].isRevealed) return;
 
     // Create copy of board

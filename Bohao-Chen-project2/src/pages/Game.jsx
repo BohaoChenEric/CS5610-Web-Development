@@ -35,7 +35,6 @@ const Game = () => {
     <div style={{ padding: '20px' }}>
       <h2>!!!GOOD LUCK!!!</h2>
       
-      {/* Game over message and reset button */}
       {gameState.gameOver && (
         <div style={{ marginBottom: '20px' }}>
           <h3>{gameState.won ? 'You Won!' : 'Game Over!'}</h3>
@@ -48,7 +47,6 @@ const Game = () => {
         </div>
       )}
 
-      {/* Game board */}
       <div style={{ width: 'fit-content', margin: '0 auto' }}>
         <div style={{
           display: 'grid',
@@ -58,7 +56,6 @@ const Game = () => {
           padding: '1px',
           width: `${containerWidth}px`,
         }}>
-          {/* Create cells */}
           {gameState.board.map((row, i) =>
             row.map((cell, j) => (
               <button
@@ -79,7 +76,6 @@ const Game = () => {
                   justifyContent: 'center'
                 }}
               >
-                {/* Show mine or number when revealed */}
                 {cell.isRevealed ? (cell.isMine ? '💣' : (cell.neighborMines || '')) : ''}
               </button>
             ))
